@@ -3,20 +3,23 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # یا master
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout the code
+      - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.5.3'
+          flutter-version: 'stable'  # یا می‌توانید نسخه خاصی را هم وارد کنید، مانند 3.5.3
+
+      - name: Install dependencies
+        run: flutter pub get
 
       - name: Build web app
         run: flutter build web
