@@ -10,11 +10,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: subosito/flutter-action@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
         with:
-          channel: 'stable'
-      - run: flutter --version
+          flutter-version: 'stable'
+
       - name: Install dependencies
         run: flutter pub get
 
@@ -24,5 +27,6 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages  # شاخه‌ای که به GitHub Pages متصل است
-          folder: build/web  # پوشه‌ای که می‌خواهید منتشر کنید
+          branch: gh-pages
+          folder: build/web
+          token: ${{ secrets.GH_TOKEN }}
