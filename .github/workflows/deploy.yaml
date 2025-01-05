@@ -10,16 +10,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Checkout the code
+        uses: actions/checkout@v3
 
-      - name: Set up Flutter
+      - name: Clone Flutter repository with master channel
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: 'stable'
-
-      - name: Install dependencies
-        run: flutter pub get
+          channel: master
+      - run: flutter doctor -v
+      - run: flutter pub get
 
       - name: Build web app
         run: flutter build web
