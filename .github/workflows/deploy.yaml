@@ -17,8 +17,6 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: master
-      - run: flutter doctor -v
-      - run: flutter pub get
 
       - name: Build web app
         run: flutter build web
